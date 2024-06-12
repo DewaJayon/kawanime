@@ -16,9 +16,11 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->string('title');
             $table->string('slug');
-            $table->string('thumnail');
+            $table->string('thumbnail');
             $table->text('description');
             $table->string('status');
+            $table->string('studio');
+            $table->dateTime('airing_date');
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');

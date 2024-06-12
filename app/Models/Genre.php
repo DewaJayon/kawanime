@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Genre extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function anime()
+    {
+        return $this->belongsToMany(Anime::class);
+    }
 }

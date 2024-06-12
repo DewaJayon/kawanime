@@ -1,6 +1,6 @@
-# Laravel E Commerce SOK ASIK Kelompok 5
+# Laravel KawaNime
 
-Sebuah aplikasi toko online sederhana.
+Sebuah aplikasi Streaming anime sederhana.
 
 ## Daftar Isi
 
@@ -86,4 +86,5 @@ Berikut adalah langkah-langkah untuk menginstal dan menjalankan aplikasi:
 
 ## Fitur
 
--   WIP
+-   Video Player
+-   Manage Anime

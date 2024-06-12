@@ -20,12 +20,12 @@
         'resources/sass/front/style.scss',
         'resources/css/front/font-awesome.min.css',
         'resources/css/front/elegant-icons.css',
-        'resources/css/front/plyr.css',
         'resources/css/front/nice-select.css',
         'resources/css/front/owl.carousel.min.css',
         'resources/css/front/slicknav.min.css',
         'resources/css/front/style.css',
     ])
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 </head>
 
 <body>
@@ -60,13 +60,14 @@
     @vite([
         //
         'resources/js/app.js',
-        'resources/js/front/player.js',
         'resources/js/front/jquery.nice-select.min.js',
         'resources/js/front/mixitup.min.js',
         'resources/js/front/jquery.slicknav.js',
         'resources/js/front/owl.carousel.min.js',
         'resources/js/front/main.js',
     ])
+
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
 
 </body>
 
