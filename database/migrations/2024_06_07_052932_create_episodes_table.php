@@ -16,9 +16,10 @@ return new class extends Migration
             $table->foreignId('anime_id');
             $table->string('title');
             $table->string('slug');
-            $table->string('thumnail');
-            $table->text('description');
+            $table->string('thumbnail');
+            $table->string('episode');
             $table->text('video');
+            $table->string('duration');
             $table->timestamps();
 
             $table->foreign('anime_id')->references('id')->on('animes');

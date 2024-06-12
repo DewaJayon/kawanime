@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('anime_id');
             $table->string('name');
             $table->string('slug');
             $table->timestamps();
+
+            $table->foreign('anime_id')->references('id')->on('animes');
         });
     }
 
