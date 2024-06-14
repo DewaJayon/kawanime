@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\AnimeController;
+use App\Http\Controllers\Dashboard\AnimeEpisodeController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ListAnimeController;
@@ -9,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes([
-    'register' => false,
-    'reset' => false,
-    'verify' => false,
+    'register'  => false,
+    'reset'     => false,
+    'verify'    => false,
 ]);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/watch/{episode:slug}', [WatchController::class, 'index'])->name('watch');
@@ -21,6 +22,13 @@ Route::get('/anime-detail/{anime:slug}', [ListAnimeController::class, 'show'])->
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/dashboard/anime', AnimeController::class);
+
+    Route::get('/dashboard/anime/{anime}/episode', [AnimeEpisodeController::class, 'index'])->name('dashboard.anime.episode');
+    Route::get('/dashboard/anime/{anime}/episode/create', [AnimeEpisodeController::class, 'create'])->name('dashboard.anime.episode.create');
+    Route::post('/dashboard/anime/{anime}/episode', [AnimeEpisodeController::class, 'store'])->name('dashboard.anime.episode.store');
+    Route::get('/dashboard/anime/{anime}/episode/{episode}/edit', [AnimeEpisodeController::class, 'edit'])->name('dashboard.anime.episode.edit');
+    Route::put('/dashboard/anime/{anime}/episode/{episode}', [AnimeEpisodeController::class, 'update'])->name('dashboard.anime.episode.update');
+    Route::delete('/dashboard/anime/{anime}/episode/{episode}', [AnimeEpisodeController::class, 'destroy'])->name('dashboard.anime.episode.destroy');
 });
 
 Route::get('/test', function () {

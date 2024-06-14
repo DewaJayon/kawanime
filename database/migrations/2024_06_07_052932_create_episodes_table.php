@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('anime_id');
             $table->string('title');
             $table->string('slug');
-            $table->string('thumbnail');
+            $table->string('thumbnail')->nullable();
             $table->string('episode');
             $table->text('video');
             $table->string('duration');
