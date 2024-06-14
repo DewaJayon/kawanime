@@ -2,6 +2,14 @@
 
 Sebuah aplikasi Streaming anime sederhana.
 
+## Support saya
+
+<p align="center">
+    <a href="sociabuzz.com/dewa_jayon/donate" target="_blank">
+       <img src="https://sociabuzz.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2020/10/sociabuzz-tribe.png" alt="Sociabuzz" Width=280/>
+	</a>
+</p>
+
 ## Daftar Isi
 
 -   [Cara Install](#cara-install)
@@ -88,3 +96,4 @@ Berikut adalah langkah-langkah untuk menginstal dan menjalankan aplikasi:
 
 -   Video Player
 -   Manage Anime
+-   Manage Episode Anime

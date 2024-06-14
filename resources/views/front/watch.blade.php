@@ -44,7 +44,7 @@
                             <div class="anime__details__content">
                                 <div class="row">
                                     <div class="col-lg-3">
-                                        <div class="anime__details__pic set-bg" data-setbg="{{ $anime->thumbnail }}">
+                                        <div class="anime__details__pic set-bg" data-setbg="{{ asset('storage/anime-thumbnail/' . $anime->thumbnail) }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-9">
@@ -52,7 +52,9 @@
                                             <div class="anime__details__title">
                                                 <h3>{{ $anime->title }}</h3>
                                             </div>
-                                            <p>{{ $anime->description }}</p>
+                                            <div class="text-white">
+                                                <p>{!! $anime->description !!}</p>
+                                            </div>
                                             <div class="anime__details__widget">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6">

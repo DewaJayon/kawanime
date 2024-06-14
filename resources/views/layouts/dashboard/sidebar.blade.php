@@ -23,13 +23,13 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Pages</span>
         </li>
-        <li class="menu-item {{ request()->routeIs('anime.*') ? 'active open' : '' }} ">
+        <li class="menu-item {{ request()->routeIs('anime.*', 'dashboard.anime.episode*') ? 'active open' : '' }} ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="anime">Content</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item {{ request()->routeIs('anime.*') ? 'active' : '' }}">
+                <li class="menu-item {{ request()->routeIs('anime.*', 'dashboard.anime.episode*') ? 'active' : '' }}">
                     <a href="{{ route('anime.index') }}" class="menu-link">
                         <div data-i18n="anime">Anime</div>
                     </a>
