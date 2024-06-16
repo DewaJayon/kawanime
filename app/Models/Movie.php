@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Genre extends Model
+class Movie extends Model
 {
     use HasFactory;
 
@@ -14,5 +14,10 @@ class Genre extends Model
     public function genreOption()
     {
         return $this->hasMany(GenreOption::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

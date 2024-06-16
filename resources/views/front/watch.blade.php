@@ -63,7 +63,11 @@
                                                             <li><span>Studios:</span> {{ $anime->studio }}</li>
                                                             <li><span>Date aired:</span> {{ Carbon\Carbon::parse($anime->airing_date)->format('d F Y') }}</li>
                                                             <li><span>Status:</span> {{ $anime->status }}</li>
-                                                            <li><span>Genre:</span> {{ $anime->genre[0]->name }}</li>
+                                                            <li><span>Genre:</span>
+                                                                @foreach ($genres as $genre)
+                                                                    {{ $genre }},
+                                                                @endforeach
+                                                            </li>
                                                             <li><span>Duration:</span> {{ $anime->episode[0]->duration }}</li>
                                                         </ul>
                                                     </div>

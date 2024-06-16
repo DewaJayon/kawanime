@@ -72,9 +72,10 @@
                                                 <div class="ep">Episode {{ $anime->episode }}</div>
                                             </div>
                                             <div class="product__item__text">
+                                                {{-- {{ dd($anime->anime->genreOption->genre) }} --}}
                                                 <ul>
-                                                    @foreach ($anime->anime->genre as $item)
-                                                        <li>{{ $item->name }}</li>
+                                                    @foreach ($anime->anime->genreOption as $item)
+                                                        <li>{{ $item->genre->name }}</li>
                                                     @endforeach
                                                 </ul>
                                                 <h5><a href="{{ route('watch', $anime->slug) }}">{{ $anime->title }}</a></h5>

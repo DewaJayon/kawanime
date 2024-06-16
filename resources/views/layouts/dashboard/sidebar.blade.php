@@ -46,15 +46,20 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ request()->routeIs('genre.*') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-                <div data-i18n="Authentications">Banner</div>
+                <i class="menu-icon tf-icons bx bx-list-ul"></i>
+                <div data-i18n="General">General</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="#" class="menu-link" target="_blank">
-                        <div data-i18n="Basic">Banner</div>
+                    <a href="" class="menu-link">
+                        <div data-i18n="Banner">Banner</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ request()->routeIs('genre.*') ? 'active' : '' }}">
+                    <a href="{{ route('genre.index') }}" class="menu-link">
+                        <div data-i18n="Genre">Genre</div>
                     </a>
                 </li>
             </ul>
@@ -64,7 +69,7 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Extra</span></li>
         <li class="menu-item">
             <a href="{{ route('home') }}" target="_blank" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-support"></i>
+                <i class='bx bx-globe menu-icon'></i>
                 <div data-i18n="Support">Lihat Website</div>
             </a>
         </li>

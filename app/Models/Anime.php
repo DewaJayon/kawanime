@@ -39,8 +39,8 @@ class Anime extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function genre()
+    public function genreOption()
     {
-        return $this->hasMany(Genre::class);
+        return $this->hasMany(GenreOption::class);
     }
 }
