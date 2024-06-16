@@ -41,8 +41,6 @@ class DatabaseSeeder extends Seeder
 
         DB::table('genres')->insert([
             'name' => "Romance",
-            'slug' => "romance",
-            'anime_id' => 1,
         ]);
 
         DB::table('episodes')->insert([
@@ -53,6 +51,11 @@ class DatabaseSeeder extends Seeder
             'thumbnail' => "https://dummyimage.com/350x190/808080/fff",
             'video' => "video/video1.mp4",
             'duration' => "24 Menit",
+        ]);
+
+        DB::table('genre_options')->insert([
+            'genre_id' => 1,
+            'anime_id' => 1,
         ]);
     }
 }

@@ -22,7 +22,7 @@
                                 <a href="{{ route('anime.index') }}">
                                     <button type="button" class="btn rounded-pill btn-outline-success mb-4">Kembali ke List</button>
                                 </a>
-                                <a href="#">
+                                <a href="{{ route('dashboard.anime.episode', $anime->slug) }}">
                                     <button type="button" class="btn rounded-pill btn-outline-primary mb-4">Tambah Episode</button>
                                 </a>
                             </div>
