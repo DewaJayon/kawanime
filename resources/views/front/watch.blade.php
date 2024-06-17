@@ -8,7 +8,7 @@
                     <div class="breadcrumb__links">
                         <a href="{{ route('home') }}"><i class="fa fa-home"></i> Home</a>
                         <a href="#">{{ $anime->category->name }}</a>
-                        <a href="#">{{ $anime->title }}</a>
+                        <a href="{{ route('anime-detail', $anime->slug) }}">{{ $anime->title }}</a>
                         <span>{{ $episode->title }}</span>
                     </div>
                 </div>

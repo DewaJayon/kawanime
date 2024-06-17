@@ -65,14 +65,13 @@
                         </div>
                         <div class="row">
                             @forelse ($episodes as $anime)
-                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
                                     <a href="{{ route('watch', $anime->slug) }}">
                                         <div class="product__item">
                                             <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/anime-thumbnail/' . $anime->anime->thumbnail) }}">
                                                 <div class="ep">Episode {{ $anime->episode }}</div>
                                             </div>
                                             <div class="product__item__text">
-                                                {{-- {{ dd($anime->anime->genreOption->genre) }} --}}
                                                 <ul>
                                                     @foreach ($anime->anime->genreOption as $item)
                                                         <li>{{ $item->genre->name }}</li>

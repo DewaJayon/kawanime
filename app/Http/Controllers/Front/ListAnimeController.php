@@ -20,10 +20,15 @@ class ListAnimeController extends Controller
     public function show(Anime $anime)
     {
         $episode = Episode::where('anime_id', $anime->id)->first();
+        $genre   = [];
+        foreach ($anime->genreOption as $item) {
+            $genre[] = $item->genre->name;
+        }
         return view('front.anime-detail', [
             'title'     => $anime->title,
             'anime'     => $anime,
             'episode'   => $episode,
+            'genres'    => $genre
         ]);
     }
 }

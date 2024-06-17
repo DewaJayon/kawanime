@@ -16,7 +16,6 @@
                                 <a href="{{ route('home') }}">Homepage</a>
                             </li>
                             <li class="{{ Request::routeIs('list-anime') ? 'active' : '' }}"><a href="{{ route('list-anime') }}">List Anime</a></li>
-                            <li><a href="#">Series</a></li>
                             <li><a href="#">Movie</a></li>
                             <li><a href="#">Live Action</a></li>
                         </ul>
