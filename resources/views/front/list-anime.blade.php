@@ -34,7 +34,7 @@
                         <div class="row">
                             @forelse ($animes as $anime)
                                 <a href="{{ route('anime-detail', $anime->slug) }}">
-                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                                         <div class="product__item">
                                             <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/anime-thumbnail/' . $anime->thumbnail) }}"></div>
                                             <div class="product__item__text">
@@ -48,13 +48,16 @@
                             @endforelse
                         </div>
                     </div>
-                    <div class="product__pagination">
-                        <a href="#" class="current-page">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#"><i class="fa fa-angle-double-right"></i></a>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="product__pagination">
+                            <a href="#"><i class="fa fa-angle-double-left"></i></a>
+                            <a href="#" class="current-page">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                            <a href="#"><i class="fa fa-angle-double-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>

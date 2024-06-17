@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Anime;
 use App\Models\Category;
+use App\Models\Genre;
+use App\Models\GenreOption;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -31,6 +34,7 @@ class AnimeController extends Controller
         return view('dashboard.anime.create', [
             'title'         => 'Dashboard | Anime',
             'categories'    => Category::all(),
+            'genres'        => Genre::all(),
         ]);
     }
 
@@ -47,6 +51,7 @@ class AnimeController extends Controller
             'airing_date'   => 'required|date',
             'thumbnail'     => 'required|image|mimes:jpeg,jpg,png|max:2048',
             'category'      => 'required',
+            'genre'         => 'required',
         ]);
 
         if ($request->file('thumbnail')) {
@@ -63,7 +68,6 @@ class AnimeController extends Controller
             $imgFile            = Image::make($image->getRealPath());
             $imgFile->resize(230, 325)->save($destinationPath . '/' . $img);
         }
-
 
         if ($request->status == null) {
             $status = Anime::STATUS_FINISHED;
@@ -84,7 +88,20 @@ class AnimeController extends Controller
             'category_id'   => $request->category,
         ];
 
-        Anime::create($animeParams);
+        $anime = Anime::create($animeParams);
+
+        if ($request->genre) {
+            $genres = $request->genre;
+            DB::transaction(function () use ($genres, $anime) {
+                foreach ($genres as $genre) {
+                    $genreOptionParams = [
+                        'genre_id'  => $genre,
+                        'anime_id'  => $anime->id,
+                    ];
+                    GenreOption::create($genreOptionParams);
+                }
+            });
+        }
 
         return redirect()->route('anime.index')->with('success', 'Anime telah ditambahkan!');
     }
@@ -105,10 +122,12 @@ class AnimeController extends Controller
      */
     public function edit(Anime $anime)
     {
+
         return view('dashboard.anime.edit', [
             'title'         => 'Dashboard | ' . $anime->title,
             'anime'         => $anime,
             'categories'    => Category::all(),
+            'genres'        => Genre::all(),
         ]);
     }
 
@@ -126,18 +145,16 @@ class AnimeController extends Controller
             'category_id'   => 'required',
         ];
 
+        if ($request->slug != $anime->slug) {
+            $rules['slug'] = SlugService::createSlug(Anime::class, 'slug', $request->title);
+        }
+
         $validate = $request->validate($rules);
 
         if ($request->status == null) {
             $validate['status'] = Anime::STATUS_FINISHED;
         } else {
             $validate['status'] = Anime::STATUS_ONGOING;
-        }
-
-        if ($request->title != strtolower($anime->title)) {
-            $validate['slug']  = SlugService::createSlug(Anime::class, 'slug', $request->title);
-        } else {
-            $validate['slug'] = $anime->slug;
         }
 
         if ($request->file('thumbnail')) {
@@ -158,6 +175,20 @@ class AnimeController extends Controller
 
         Anime::where('id', $anime->id)->update($validate);
 
+        if ($request->genre) {
+            $genres = $request->genre;
+            DB::transaction(function () use ($genres, $anime) {
+                GenreOption::where('anime_id', $anime->id)->delete();
+                foreach ($genres as $genre) {
+                    $genreOptionParams = [
+                        'genre_id'  => $genre,
+                        'anime_id'  => $anime->id,
+                    ];
+                    GenreOption::create($genreOptionParams);
+                }
+            });
+        }
+
         return redirect()->route('anime.index')->with('success', 'Anime telah diperbarui!');
     }
 
@@ -168,6 +199,7 @@ class AnimeController extends Controller
     {
 
         try {
+            GenreOption::where('anime_id', $anime->id)->delete();
             Anime::destroy($anime->id);
             if ($anime->thumbnail) {
                 Storage::delete($anime->thumbnail);

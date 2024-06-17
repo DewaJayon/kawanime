@@ -71,6 +71,23 @@
                             </div>
 
                             <div class="mb-3 row">
+                                <label for="genre" class="col-md-2 col-form-label">Genre</label>
+                                <div class="col-md-10">
+                                    <select class="form-select @error('genre') is-invalid @enderror" id="multiple-select-field" data-placeholder="Pilih Genre" multiple name="genre[]">
+                                        @foreach ($genres as $genre)
+                                            <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('genre')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
                                 <label for="description" class="col-md-2 col-form-label">Deskripsi</label>
                                 <div class="col-md-10">
                                     <input id="description" type="hidden" name="description" value="{{ old('description') }}">
@@ -111,5 +128,14 @@
                 URL.revokeObjectURL(output.src)
             }
         };
+
+        $(document).ready(function() {
+            $('#multiple-select-field').select2({
+                theme: "bootstrap-5",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                closeOnSelect: false,
+            });
+        });
     </script>
 @endsection

@@ -74,6 +74,27 @@
                                 </div>
                             </div>
 
+
+                            <div class="mb-3 row">
+                                <label for="genre" class="col-md-2 col-form-label">Genre</label>
+                                <div class="col-md-10">
+                                    <select class="form-select @error('genre') is-invalid @enderror" id="multiple-select-field" data-placeholder="Pilih Genre" multiple name="genre[]">
+                                        @foreach ($genres as $genre)
+                                            @if ($genre->genreOption->where('anime_id', $anime->id)->count() > 0)
+                                                <option value="{{ $genre->id }}" selected>{{ $genre->name }}</option>
+                                            @else
+                                                <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    @error('genre')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="mb-3 row">
                                 <label for="description" class="col-md-2 col-form-label">Deskripsi</label>
                                 <div class="col-md-10">
@@ -112,6 +133,7 @@
             </div>
         </div>
     </div>
+
     <script>
         var previewImage = function(event) {
             var output = document.getElementById('img-preview');
@@ -120,5 +142,14 @@
                 URL.revokeObjectURL(output.src)
             }
         };
+
+        $(document).ready(function() {
+            $('#multiple-select-field').select2({
+                theme: "bootstrap-5",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                closeOnSelect: false,
+            });
+        });
     </script>
 @endsection
