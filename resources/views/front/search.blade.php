@@ -32,44 +32,61 @@
                             </div>
                         </div>
                         <div class="row">
-                            @forelse ($search as $item)
-                                <a href="{{ route('watch', $item->slug) }}">
-                                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                                        <div class="product__item">
-                                            <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/anime-thumbnail/' . $item->anime->thumbnail) }}">
-                                                <div class="ep">Episode {{ $item->episode }}</div>
-                                            </div>
-                                            <div class="product__item__text">
-                                                <ul>
-                                                    @foreach ($item->anime->genreOption as $genreItem)
-                                                        <li>{{ $genreItem->genre->name }}</li>
-                                                    @endforeach
-                                                </ul>
-                                                <h5><a href="{{ route('watch', $item->slug) }}">{{ $item->title }}</a></h5>
+
+                            @if (count($search) > 0)
+                                @foreach ($search as $item)
+                                    <a href="{{ route('anime-detail', $item->slug) }}">
+                                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                            <div class="product__item">
+                                                <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/anime-thumbnail/' . $item->thumbnail) }}"></div>
+                                                <div class="product__item__text">
+                                                    <ul>
+                                                        @foreach ($item->genreOption as $genreItem)
+                                                            <li>{{ $genreItem->genre->name }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                    <h5><a href="{{ route('anime-detail', $item->slug) }}">{{ $item->title }}</a></h5>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                @endforeach
+                            @endif
+
+                            @forelse ($search as $item)
+                                @foreach ($item->episode as $ep)
+                                    <a href="{{ route('watch', $ep->slug) }}">
+                                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                            <div class="product__item">
+                                                <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/anime-thumbnail/' . $item->thumbnail) }}">
+                                                    <div class="ep">Episode {{ $ep->episode }}</div>
+                                                </div>
+                                                <div class="product__item__text">
+                                                    <ul>
+                                                        @foreach ($item->genreOption as $genreItem)
+                                                            <li>{{ $genreItem->genre->name }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                    <h5><a href="{{ route('watch', $ep->slug) }}">{{ $ep->title }}</a></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @endforeach
                             @empty
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <h3 class="text-center text-white">Pencarian Tidak Ditemukan</h3>
+                                <div class="container" style="height: 100vh">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <h3 class="text-center text-white">Pencarian Tidak Ditemukan</h3>
+                                    </div>
                                 </div>
                             @endforelse
                         </div>
                     </div>
-                    @if ($search->hasPages())
-                        <div class="d-flex justify-content-center align-items-center">
-                            <div class="product__pagination">
-                                <a href="#"><i class="fa fa-angle-double-left"></i></a>
-                                <a href="#" class="current-page">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#">4</a>
-                                <a href="#">5</a>
-                                <a href="#"><i class="fa fa-angle-double-right"></i></a>
-                            </div>
+                    {{-- <div class="d-flex justify-content-center align-items-center">
+                        <div class="product__pagination">
+                            {{ $search->links('layouts.front.paginate') }}
                         </div>
-                    @endif
+                    </div> --}}
                 </div>
             </div>
         </div>

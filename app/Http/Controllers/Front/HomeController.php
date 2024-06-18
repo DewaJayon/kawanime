@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
         return view('front.home', [
             'title'     => 'KawaNime',
-            'episodes'  => Episode::with('anime')->latest()->take(6)->get(),
+            'episodes'  => Episode::with('anime')->latest()->paginate(8),
         ]);
     }
 }
