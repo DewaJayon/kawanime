@@ -46,7 +46,7 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item {{ request()->routeIs('genre.*') ? 'active open' : '' }}">
+        <li class="menu-item {{ request()->routeIs('genre.*', 'category.*') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-list-ul"></i>
                 <div data-i18n="General">General</div>
@@ -60,6 +60,11 @@
                 <li class="menu-item {{ request()->routeIs('genre.*') ? 'active' : '' }}">
                     <a href="{{ route('genre.index') }}" class="menu-link">
                         <div data-i18n="Genre">Genre</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ request()->routeIs('category.*') ? 'active' : '' }}">
+                    <a href="{{ route('category.index') }}" class="menu-link">
+                        <div data-i18n="Category">Category</div>
                     </a>
                 </li>
             </ul>
