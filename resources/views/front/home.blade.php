@@ -49,7 +49,7 @@
     <section class="product spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="trending__product">
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
@@ -63,9 +63,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row rounded p-3" style="border: 1px solid white">
                             @forelse ($episodes as $anime)
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-6">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-6 ">
                                     <a href="{{ route('watch', $anime->slug) }}">
                                         <div class="product__item">
                                             <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/anime-thumbnail/' . $anime->anime->thumbnail) }}">
@@ -85,6 +85,11 @@
                             @empty
                                 <h3>Belum Ada Anime</h3>
                             @endforelse
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="product__pagination">
+                                {{ $episodes->links('layouts.front.paginate') }}
+                            </div>
                         </div>
                     </div>
 
@@ -149,48 +154,6 @@
                                         </ul>
                                         <h5><a href="#">Shouwa Genroku Rakugo Shinjuu</a></h5>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-8">
-                    <div class="product__sidebar">
-                        <div class="product__sidebar__view">
-                            <div class="section-title">
-                                <h5>Top Views</h5>
-                            </div>
-                            <ul class="filter__controls">
-                                <li class="active" data-filter="*">Day</li>
-                                <li data-filter=".week">Week</li>
-                                <li data-filter=".month">Month</li>
-                                <li data-filter=".years">Years</li>
-                            </ul>
-                            <div class="filter__gallery">
-                                <div class="product__sidebar__view__item set-bg mix day years" data-setbg="https://dummyimage.com/350x190/808080/fff">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">Boruto: Naruto next generations</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix month week" data-setbg="https://dummyimage.com/350x190/808080/fff">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix week years" data-setbg="https://dummyimage.com/350x190/808080/fff">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">Sword art online alicization war of underworld</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix years month" data-setbg="https://dummyimage.com/350x190/808080/fff">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix day" data-setbg="https://dummyimage.com/350x190/808080/fff">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">Fate stay night unlimited blade works</a></h5>
                                 </div>
                             </div>
                         </div>
