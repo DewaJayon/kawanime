@@ -98,3 +98,4 @@ Berikut adalah langkah-langkah untuk menginstal dan menjalankan aplikasi:
 -   Manage Anime
 -   Manage Episode Anime
 -   Manage Genre
+-   Manage Category
