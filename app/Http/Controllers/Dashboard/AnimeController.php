@@ -22,7 +22,7 @@ class AnimeController extends Controller
     {
         return view('dashboard.anime.index', [
             'title'     => 'Dashboard | Anime',
-            'animes'    => Anime::all(),
+            'animes'    => Anime::with('category')->get(),
         ]);
     }
 

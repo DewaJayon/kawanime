@@ -7,7 +7,7 @@
                     <div class="d-flex align-items-end row">
                         <div class="col-sm-7">
                             <div class="card-body">
-                                <h5 class="card-title text-primary">Selamat Datang Admin</h5>
+                                <h5 class="card-title text-primary">Selamat Datang Di Panel Admin</h5>
                             </div>
                         </div>
                     </div>
@@ -20,10 +20,8 @@
                             <div class="card-body">
                                 <div class="card-title d-flex align-items-start justify-content-between">
                                     <h4>Total Anime</h4>
+                                    <span class="badge badge-center rounded-pill bg-primary">{{ $jumlahAnime }}</span>
                                 </div>
-                                <span class="fw-semibold d-block mb-1">Profit</span>
-                                <h3 class="card-title mb-2">$12,628</h3>
-                                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
                             </div>
                         </div>
                     </div>
