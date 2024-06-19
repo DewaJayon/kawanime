@@ -24,7 +24,7 @@ class ListAnimeController extends Controller
         foreach ($anime->genreOption as $item) {
             $genre[] = $item->genre->name;
         }
-        return view('front.anime-detail', [
+        return view('front.detail.anime-detail', [
             'title'     => $anime->title,
             'anime'     => $anime,
             'episode'   => $episode,

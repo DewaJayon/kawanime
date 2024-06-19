@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Episode;
+use App\Models\Movie;
 
 class WatchController extends Controller
 {
@@ -18,11 +19,25 @@ class WatchController extends Controller
             $genres[] = $item->genre->name;
         }
 
-        return view('front.watch', [
+        return view('front.watch.watch', [
             'title'     => $episode->title,
             'anime'     => $anime,
             'episode'   => $eps,
             'episodes'  => $allEps,
+            'genres'    => $genres
+        ]);
+    }
+
+    public function movie(Movie $movie)
+    {
+        $genres     = [];
+        foreach ($movie->genreOption as $item) {
+            $genres[] = $item->genre->name;
+        }
+
+        return view('front.watch.watch-movie', [
+            'title'     => $movie->title,
+            'movie'     => $movie,
             'genres'    => $genres
         ]);
     }

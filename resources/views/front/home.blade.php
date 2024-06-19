@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="#" class="primary-btn">Lihat Semua <span class="arrow_right"></span></a>
+                                    <a href="{{ route('list-anime') }}" class="primary-btn">Lihat Semua <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -102,27 +102,32 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="#" class="primary-btn">Lihat Semua <span class="arrow_right"></span></a>
+                                    <a href="{{ route('list-movie') }}" class="primary-btn">Lihat Semua <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="https://dummyimage.com/230x325/808080/fff">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Sen to Chihiro no Kamikakushi</a></h5>
-                                    </div>
+                            @forelse ($movies as $movie)
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-6 ">
+                                    <a href="{{ route('watch.movie', $movie->slug) }}">
+                                        <div class="product__item">
+                                            <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/' . $movie->thumbnail) }}">
+                                                <div class="ep">Movie</div>
+                                            </div>
+                                            <div class="product__item__text">
+                                                <ul>
+                                                    @foreach ($movie->genreOption as $item)
+                                                        <li>{{ $item->genre->name }}</li>
+                                                    @endforeach
+                                                </ul>
+                                                <h5><a href="{{ route('watch', $movie->slug) }}">{{ $movie->title }}</a></h5>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
-                            </div>
+                            @empty
+                                <h3>Belum Ada Movie</h3>
+                            @endforelse
                         </div>
                     </div>
 
