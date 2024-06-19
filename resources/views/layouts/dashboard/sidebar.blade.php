@@ -23,7 +23,7 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Pages</span>
         </li>
-        <li class="menu-item {{ request()->routeIs('anime.*', 'dashboard.anime.episode*') ? 'active open' : '' }} ">
+        <li class="menu-item {{ request()->routeIs(['anime.*', 'dashboard.anime.episode*', 'movie.*']) ? 'active open' : '' }} ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="anime">Content</div>
@@ -34,8 +34,8 @@
                         <div data-i18n="anime">Anime</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
+                <li class="menu-item {{ request()->routeIs('movie.*') ? 'active' : '' }}">
+                    <a href="{{ route('movie.index') }}" class="menu-link">
                         <div data-i18n="Movie">Movie</div>
                     </a>
                 </li>
