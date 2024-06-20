@@ -12,7 +12,7 @@
                 <div class="header__nav">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="{{ Request::routeIs('home') ? 'active' : '' }}">
+                            <li class="{{ Request::routeIs('home', 'search') ? 'active' : '' }}">
                                 <a href="{{ route('home') }}">Homepage</a>
                             </li>
                             <li class="{{ Request::routeIs(['list-anime', 'anime-detail']) ? 'active' : '' }}">

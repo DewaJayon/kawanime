@@ -33,47 +33,69 @@
                         </div>
                         <div class="row">
 
-                            @if (count($episode) > 0)
-                                @foreach ($episode as $item)
-                                    <a href="{{ route('watch', $item->slug) }}">
-                                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                                            <div class="product__item">
-                                                <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/anime-thumbnail/' . $item->anime->thumbnail) }}">
-                                                    <div class="ep">Episode {{ $item->episode }}</div>
-                                                </div>
-                                                <div class="product__item__text">
-                                                    <ul>
-                                                        {{-- {{ $item->anime->genreOption }} --}}
-                                                        @foreach ($item->anime->genreOption as $genreItem)
-                                                            <li>{{ $genreItem->genre->name }}</li>
-                                                        @endforeach
-                                                    </ul>
-                                                    <h5><a href="{{ route('watch', $item->slug) }}">{{ $item->title }}</a></h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                @endforeach
-                            @endif
+                            @if (!$notFound)
 
-                            @if (count($anime) > 0)
-                                @foreach ($anime as $item)
-                                    <a href="{{ route('anime-detail', $item->slug) }}">
-                                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                                            <div class="product__item">
-                                                <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/anime-thumbnail/' . $item->thumbnail) }}"></div>
-                                                <div class="product__item__text">
-                                                    <ul>
-                                                        @foreach ($item->genreOption as $genreItem)
-                                                            <li>{{ $genreItem->genre->name }}</li>
-                                                        @endforeach
-                                                    </ul>
-                                                    <h5><a href="{{ route('anime-detail', $item->slug) }}">{{ $item->title }}</a></h5>
+                                @if (count($episode) > 0)
+                                    @foreach ($episode as $item)
+                                        <a href="{{ route('watch', $item->slug) }}">
+                                            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                                <div class="product__item">
+                                                    <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/anime-thumbnail/' . $item->anime->thumbnail) }}">
+                                                        <div class="ep">Episode {{ $item->episode }}</div>
+                                                    </div>
+                                                    <div class="product__item__text">
+                                                        <ul>
+                                                            @foreach ($item->anime->genreOption as $genreItem)
+                                                                <li>{{ $genreItem->genre->name }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                        <h5><a href="{{ route('watch', $item->slug) }}">{{ $item->title }}</a></h5>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                @endforeach
+                                        </a>
+                                    @endforeach
+                                @endif
+
+                                @if (count($anime) > 0)
+                                    @foreach ($anime as $item)
+                                        <a href="{{ route('anime-detail', $item->slug) }}">
+                                            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                                <div class="product__item">
+                                                    <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/anime-thumbnail/' . $item->thumbnail) }}"></div>
+                                                    <div class="product__item__text">
+                                                        <ul>
+                                                            @foreach ($item->genreOption as $genreItem)
+                                                                <li>{{ $genreItem->genre->name }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                        <h5><a href="{{ route('anime-detail', $item->slug) }}">{{ $item->title }}</a></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                @endif
+
+                                @if (count($movie) > 0)
+                                    @foreach ($movie as $item)
+                                        <a href="{{ route('movie-detail', $item->slug) }}">
+                                            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                                <div class="product__item">
+                                                    <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/' . $item->thumbnail) }}"></div>
+                                                    <div class="product__item__text">
+                                                        <ul>
+                                                            @foreach ($item->genreOption as $genreItem)
+                                                                <li>{{ $genreItem->genre->name }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                        <h5><a href="{{ route('movie-detail', $item->slug) }}">{{ $item->title }}</a></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                @endif
                             @else
                                 <div class="container" style="height: 100vh">
                                     <div class="d-flex justify-content-center align-items-center">
