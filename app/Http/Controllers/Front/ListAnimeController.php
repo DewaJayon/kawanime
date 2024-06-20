@@ -13,7 +13,7 @@ class ListAnimeController extends Controller
     {
         return view('front.list-anime', [
             'title'     => 'List Anime',
-            'animes'    => Anime::latest()->paginate(12),
+            'animes'    => Anime::latest()->paginate(8),
         ]);
     }
 
