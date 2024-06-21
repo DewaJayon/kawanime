@@ -27,6 +27,10 @@ class SearchController extends Controller
             'movies'    => Movie::with('genreOption', 'genreOption.genre')->where('title', 'like', "%$inputSearch%")->get(),
         ];
 
+        if ($inputSearch == "") {
+            return redirect()->route('home');
+        }
+
         if (count($search['animes']) == 0 && count($search['episodes']) == 0 && count($search['movies']) == 0) {
             $notFound = "Pencarian Tidak Ditemukan";
             return view('front.search', [
