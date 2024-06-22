@@ -46,14 +46,14 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item {{ request()->routeIs('genre.*', 'category.*') ? 'active open' : '' }}">
+        <li class="menu-item {{ request()->routeIs(['genre.*', 'category.*', 'banner.*']) ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-list-ul"></i>
                 <div data-i18n="General">General</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="" class="menu-link">
+                <li class="menu-item {{ request()->routeIs('banner.*') ? 'active' : '' }}">
+                    <a href="{{ route('banner.index') }}" class="menu-link">
                         <div data-i18n="Banner">Banner</div>
                     </a>
                 </li>

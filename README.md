@@ -101,4 +101,5 @@ Berikut adalah langkah-langkah untuk menginstal dan menjalankan aplikasi:
 -   Manage Category
 -   Manage Movie
 -   Manage Live Action
+-   Manage Banner
 -   Pencarian Anime

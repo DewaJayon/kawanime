@@ -22,7 +22,9 @@
                                 <a href="{{ route('list-movie') }}">Movie
                                 </a>
                             </li>
-                            <li><a href="#">Live Action</a></li>
+                            <li class="{{ Request::routeIs('list-live-action', 'live-action-detail') ? 'active' : '' }}">
+                                <a href="{{ route('list-live-action') }}">Live Action</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

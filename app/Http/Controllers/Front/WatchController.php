@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Episode;
+use App\Models\LiveAction;
 use App\Models\Movie;
 
 class WatchController extends Controller
@@ -39,6 +40,20 @@ class WatchController extends Controller
             'title'     => $movie->title,
             'movie'     => $movie,
             'genres'    => $genres
+        ]);
+    }
+
+    public function liveAction(LiveAction $liveAction)
+    {
+        $genres     = [];
+        foreach ($liveAction->genreOption as $item) {
+            $genres[] = $item->genre->name;
+        }
+
+        return view('front.watch.live-action', [
+            'title'         => $liveAction->title,
+            'liveAction'    => $liveAction,
+            'genres'        => $genres
         ]);
     }
 }
