@@ -119,9 +119,9 @@ class BannerController extends Controller
         $validate = $request->validate($rusles);
 
         if ($request->status == null) {
-            $status =  Banner::STATUS_INACTIVE;
+            $validate['status'] =  Banner::STATUS_INACTIVE;
         } else {
-            $status =  Banner::STATUS_ACTIVE;
+            $validate['status'] =  Banner::STATUS_ACTIVE;
         }
 
         if ($request->file('image')) {
