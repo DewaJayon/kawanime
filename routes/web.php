@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\AnimeController;
 use App\Http\Controllers\Dashboard\AnimeEpisodeController;
+use App\Http\Controllers\Dashboard\BannerController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\GenreController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Dashboard\LiveActionController;
 use App\Http\Controllers\Dashboard\MovieController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ListAnimeController;
+use App\Http\Controllers\Front\ListLiveActionController;
 use App\Http\Controllers\Front\ListMovieController;
 use App\Http\Controllers\Front\SearchController;
 use App\Http\Controllers\Front\WatchController;
@@ -24,11 +26,14 @@ Auth::routes([
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/watch/{episode:slug}', [WatchController::class, 'index'])->name('watch');
 Route::get('/watch/movie/{movie:slug}', [WatchController::class, 'movie'])->name('watch.movie');
+Route::get('/watch/live-action/{liveAction:slug}', [WatchController::class, 'liveAction'])->name('watch.live-action');
 Route::get('/list-anime', [ListAnimeController::class, 'index'])->name('list-anime');
 Route::get('/anime-detail/{anime:slug}', [ListAnimeController::class, 'show'])->name('anime-detail');
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/list-movie', [ListMovieController::class, 'index'])->name('list-movie');
 Route::get('/movie-detail/{movie:slug}', [ListMovieController::class, 'show'])->name('movie-detail');
+Route::get('/list-live-action', [ListLiveActionController::class, 'index'])->name('list-live-action');
+Route::get('/live-action-detail/{liveAction:slug}', [ListLiveActionController::class, 'show'])->name('live-action-detail');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -37,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/dashboard/category', CategoryController::class)->except(['show', 'create']);
     Route::resource('/dashboard/movie', MovieController::class);
     Route::resource('dashboard/live-action', LiveActionController::class);
+    Route::resource('dashboard/banner', BannerController::class);
 
     Route::get('/dashboard/anime/{anime}/episode', [AnimeEpisodeController::class, 'index'])->name('dashboard.anime.episode');
     Route::get('/dashboard/anime/{anime}/episode/create', [AnimeEpisodeController::class, 'create'])->name('dashboard.anime.episode.create');

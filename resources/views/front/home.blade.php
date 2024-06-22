@@ -4,42 +4,22 @@
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
-                <div class="hero__items set-bg" data-setbg="https://dummyimage.com/1172x564/808080/fff">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                @foreach ($banners as $banner)
+                    <div class="hero__items set-bg" data-setbg="{{ asset('storage/' . $banner->image) }}">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="hero__text">
+                                    <div class="label">{{ $banner->category->name }}</div>
+                                    <h2>{{ $banner->title }}</h2>
+                                    <div class="text-white">
+                                        <p class="text-white">{!! Str::limit($banner->description, 50) !!}</p>
+                                    </div>
+                                    <a href="{{ $banner->url }}"><span>Tonton Sekarang</span> <i class="fa fa-angle-right"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="hero__items set-bg" data-setbg="https://dummyimage.com/1172x564/808080/fff">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero__items set-bg" data-setbg="https://dummyimage.com/1172x564/808080/fff">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -145,22 +125,27 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="https://dummyimage.com/230x325/808080/fff">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Shouwa Genroku Rakugo Shinjuu</a></h5>
-                                    </div>
+                            @forelse ($liveActions as $liveAction)
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-6 ">
+                                    <a href="{{ route('watch.live-action', $liveAction->slug) }}">
+                                        <div class="product__item">
+                                            <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/' . $liveAction->thumbnail) }}">
+                                                <div class="ep">Live Action</div>
+                                            </div>
+                                            <div class="product__item__text">
+                                                <ul>
+                                                    @foreach ($liveAction->genreOption as $item)
+                                                        <li>{{ $item->genre->name }}</li>
+                                                    @endforeach
+                                                </ul>
+                                                <h5><a href="{{ route('watch.live-action', $liveAction->slug) }}">{{ $liveAction->title }}</a></h5>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
-                            </div>
+                            @empty
+                                <h3>Belum Ada Live Action</h3>
+                            @endforelse
                         </div>
                     </div>
                 </div>

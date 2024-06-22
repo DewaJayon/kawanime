@@ -40,10 +40,8 @@
                             <div class="card-body">
                                 <div class="card-title d-flex align-items-start justify-content-between">
                                     <h4>Total Live Action</h4>
+                                    <span class="badge badge-center rounded-pill bg-primary">{{ $jumlahLiveAction }}</span>
                                 </div>
-                                <span class="fw-semibold d-block mb-1">Profit</span>
-                                <h3 class="card-title mb-2">$12,628</h3>
-                                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
                             </div>
                         </div>
                     </div>
