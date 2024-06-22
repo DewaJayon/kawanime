@@ -199,11 +199,15 @@ class AnimeController extends Controller
     {
 
         try {
-            GenreOption::where('anime_id', $anime->id)->delete();
-            Anime::destroy($anime->id);
-            if ($anime->thumbnail) {
-                Storage::delete($anime->thumbnail);
-            }
+            DB::transaction(function () use ($anime) {
+                GenreOption::where('anime_id', $anime->id)->delete();
+
+                if ($anime->thumbnail) {
+                    Storage::delete('/anime-thumbnail/' . $anime->thumbnail);
+                }
+
+                Anime::where('id', $anime->id)->delete();
+            });
         } catch (\Exception $e) {
             return redirect()->route('anime.index')->with('error', 'Anime gagal dihapus!');
         }

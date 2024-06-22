@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\AnimeEpisodeController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\GenreController;
+use App\Http\Controllers\Dashboard\LiveActionController;
 use App\Http\Controllers\Dashboard\MovieController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ListAnimeController;
@@ -35,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/dashboard/genre', GenreController::class)->except(['show', 'create']);
     Route::resource('/dashboard/category', CategoryController::class)->except(['show', 'create']);
     Route::resource('/dashboard/movie', MovieController::class);
+    Route::resource('dashboard/live-action', LiveActionController::class);
 
     Route::get('/dashboard/anime/{anime}/episode', [AnimeEpisodeController::class, 'index'])->name('dashboard.anime.episode');
     Route::get('/dashboard/anime/{anime}/episode/create', [AnimeEpisodeController::class, 'create'])->name('dashboard.anime.episode.create');
