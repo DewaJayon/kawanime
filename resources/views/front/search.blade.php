@@ -96,6 +96,26 @@
                                         </a>
                                     @endforeach
                                 @endif
+
+                                @if (count($liveAction) > 0)
+                                    @foreach ($liveAction as $item)
+                                        <a href="{{ route('live-action-detail', $item->slug) }}">
+                                            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                                <div class="product__item">
+                                                    <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/' . $item->thumbnail) }}"></div>
+                                                    <div class="product__item__text">
+                                                        <ul>
+                                                            @foreach ($item->genreOption as $genreItem)
+                                                                <li>{{ $genreItem->genre->name }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                        <h5><a href="{{ route('live-action-detail', $item->slug) }}">{{ $item->title }}</a></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                @endif
                             @else
                                 <div class="container" style="height: 100vh">
                                     <div class="d-flex justify-content-center align-items-center">

@@ -11,7 +11,7 @@ class ListAnimeController extends Controller
 
     public function index()
     {
-        return view('front.list-anime', [
+        return view('front.list.anime', [
             'title'     => 'List Anime',
             'animes'    => Anime::latest()->paginate(8),
         ]);
@@ -24,7 +24,7 @@ class ListAnimeController extends Controller
         foreach ($anime->genreOption as $item) {
             $genre[] = $item->genre->name;
         }
-        return view('front.detail.anime-detail', [
+        return view('front.detail.anime', [
             'title'     => $anime->title,
             'anime'     => $anime,
             'episode'   => $episode,

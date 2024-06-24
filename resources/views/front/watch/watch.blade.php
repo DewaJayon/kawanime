@@ -84,4 +84,5 @@
         </div>
     </section>
     <!-- Anime Section End -->
+    </script>
 @endsection
