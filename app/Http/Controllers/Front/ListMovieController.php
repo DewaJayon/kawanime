@@ -9,7 +9,7 @@ class ListMovieController extends Controller
 {
     public function index()
     {
-        return view('front.list-movie', [
+        return view('front.list.movie', [
             'title'     => 'List Movie',
             'movies'    => Movie::latest()->paginate(12),
         ]);
@@ -22,7 +22,7 @@ class ListMovieController extends Controller
             $genres[] = $item->genre->name;
         }
 
-        return view('front.detail.movie-detail', [
+        return view('front.detail.movie', [
             'title'     => $movie->title,
             'movie'     => $movie,
             'genres'    => $genres
